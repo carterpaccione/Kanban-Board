@@ -6,6 +6,7 @@ import { Sequelize } from 'sequelize';
 let sequelize;
 
 if (process.env.DATABASE_URL) {
+    console.log('PRODUCTION INSTANCE');
     sequelize = new Sequelize(process.env.DATABASE_URL, {
         dialect: 'postgres',
         dialectOptions: {
@@ -16,6 +17,7 @@ if (process.env.DATABASE_URL) {
         },
     })
 } else {
+    console.log('FAIL')
     sequelize = new Sequelize(
         process.env.DB_NAME || 'kanban_db',
         process.env.DB_USER || 'postgres',
